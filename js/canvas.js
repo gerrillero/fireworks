@@ -1,6 +1,7 @@
-import { canvas, fireworkSound, fireworkSoundA, fireworkSoundB, particlesCount } from './constants.js';
-import { Particle } from './particle.js';
+import { canvas, particlesCount } from './constants.js';
+import { Firework } from './particle.js';
 import { Point } from './point.js';
+import { Sound } from './sound.js';
 export class Canvas {
     constructor() {
         this.particles = [];
@@ -12,11 +13,14 @@ export class Canvas {
         this.animate();
     }
     addParticles() {
-        fireworkSound.play();
-        fireworkSoundA.play();
-        fireworkSoundB.play();
+        const soundA = new Sound('./resources/Loud-FireWorks-A.mp3');
+        soundA.play();
+        const soundB = new Sound('./resources/Loud-FireWorks-B.mp3');
+        soundB.play();
+        const sound = new Sound('./resources/fireworks-shower.mp3');
+        sound.play();
         for (let index = 0; index < particlesCount; index++) {
-            this.particles.push(this.createParticle(index));
+            this.particles.push(this.createFirework(index));
         }
     }
     setCoordenades(event) {
@@ -35,10 +39,10 @@ export class Canvas {
                 this.particles.splice(index, 1);
         });
     }
-    createParticle(index) {
+    createFirework(index) {
         const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
         const angleIncrement = (Math.PI * 2) / particlesCount;
-        const power = 8;
-        return new Particle(this.context, this.windowX, this.windowY, 3, new Point(Math.cos(angleIncrement * index) * Math.random() * power, Math.sin(angleIncrement * index) * Math.random() * power), color);
+        const power = 12;
+        return new Firework(this.context, this.windowX, this.windowY, 3, new Point(Math.cos(angleIncrement * index) * Math.random() * power, Math.sin(angleIncrement * index) * Math.random() * power), color);
     }
 }

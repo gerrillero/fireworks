@@ -1,12 +1,12 @@
-import { canvas, fireworkSound, fireworkSoundA, fireworkSoundB, particlesCount } from './constants.js';
-import { Particle } from './particle.js';
+import { canvas, particlesCount } from './constants.js';
+import { Firework } from './particle.js';
 import { Point } from './point.js';
 import { Sound } from './sound.js';
 
 export class Canvas {
     context: CanvasRenderingContext2D;
     requestAnimateId: number;
-    particles: Particle[] = [];
+    particles: Firework[] = [];
     windowX: number;
     windowY: number;
 
@@ -31,7 +31,7 @@ export class Canvas {
         // fireworkSoundA.play();
         // fireworkSoundB.play();
         for (let index = 0; index < particlesCount; index++) {
-            this.particles.push(this.createParticle(index));
+            this.particles.push(this.createFirework(index));
         }
     }
 
@@ -60,11 +60,11 @@ export class Canvas {
         });
     }
 
-    private createParticle(index: number): Particle {
+    private createFirework(index: number): Firework {
         const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
         const angleIncrement: number = (Math.PI * 2) / particlesCount;
         const power: number = 12;
-        return new Particle(
+        return new Firework(
             this.context,
             this.windowX,
             this.windowY,
