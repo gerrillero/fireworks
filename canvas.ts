@@ -1,5 +1,5 @@
 import { canvas, particlesCount } from './constants.js';
-import { Firework } from './particle.js';
+import { Firework } from './firework.js';
 import { Point } from './point.js';
 import { Sound } from './sound.js';
 
