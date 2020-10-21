@@ -12,7 +12,7 @@ export class Canvas {
     init() {
         this.animate();
     }
-    addParticles() {
+    addFireworks() {
         const soundA = new Sound('./resources/Loud-FireWorks-A.mp3');
         soundA.play();
         const soundB = new Sound('./resources/Loud-FireWorks-B.mp3');
